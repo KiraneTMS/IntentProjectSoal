@@ -17,12 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity2"/>
-        <activity android:name=".MoveWithDataActivity"/>
-        <activity android:name=".MoveWithObjectActivity"/>
-        <activity android:name=".MoveActivity"/>
         <activity android:name=".MoveForResultActivity"/>
-        <activity android:name=".IntentActivity"/>
+        <activity android:name=".input1"/>
+        <activity android:name=".outputActivity"/>
     </application>
 
 </manifest>

@@ -2,94 +2,65 @@ package com.example.intentproject;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import com.example.intentproject.R;
 
-public class MainActivity extends AppCompatActivity implements
-        View.OnClickListener {
-    public Button btnMoveActivity;
-    public Button btnMoveWithDataActivity;
-    public Button btnMoveWithObject;
-    Button btnDialNumber;
-    Button btnMoveResult;
-    TextView tvResult;
-    private int REQUEST_CODE = 100;
+public class MainActivity extends AppCompatActivity{
+    public ImageButton btn1;
+    public ImageButton btn2;
+    public ImageButton btn3;
+    public Button btn4;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnMoveActivity = (Button)findViewById(R.id.btn_move_activity);
-        btnMoveActivity.setOnClickListener(this);
-        btnMoveWithDataActivity =
-                (Button)findViewById(R.id.btn_move_with_data_activity);
-        btnMoveWithDataActivity.setOnClickListener(this);
-        btnMoveWithObject =
-                (Button)findViewById(R.id.btn_move_activity_object);
-        btnMoveWithObject.setOnClickListener(this);
-        btnDialNumber = findViewById(R.id.btn_dial_number);
-        btnDialNumber.setOnClickListener(this);
-        btnMoveResult = findViewById(R.id.btn_move_for_result);
-        btnMoveResult.setOnClickListener(this);
-        tvResult = findViewById(R.id.tv_result);
+        initComponent();
     }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_move_activity:
-                Intent moveIntent = new Intent(MainActivity.this,MoveActivity.class);
-                startActivity(moveIntent);
-
-                break;
-
-            case R.id.btn_move_with_data_activity:
-                Intent moveWithDataIntent = new Intent(MainActivity.this, MoveWithDataActivity.class);
-                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "Arsya");
-                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 666);
-                startActivity(moveWithDataIntent);
-
-                break;
-
-            case R.id.btn_move_activity_object:
-                Person mPerson = new Person();
-                mPerson.setName("Arsya Alifian");
-                mPerson.setAge(666);
-
-                mPerson.setEmail("kirenaiasakura@gmail.com");
-
-                mPerson.setCity("Bandung");
-                Intent moveWithObjectIntent = new Intent(MainActivity.this,MoveWithObjectActivity.class);
-                moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, mPerson);
-                startActivity(moveWithObjectIntent);
-
-                break;
-
-            case R.id.btn_dial_number:
-                String phoneNumber = "-";
-                Intent dialPhoneIntent = new Intent(Intent.ACTION_DIAL,
-                        Uri.parse("tel:" + phoneNumber));
-                startActivity(dialPhoneIntent);
-
-                break;
-
-            case R.id.btn_move_for_result:
-                Intent moveForResultIntent = new Intent(MainActivity.this,MoveForResultActivity.class);
-                startActivityForResult(moveForResultIntent, REQUEST_CODE);
-                break;
-        }
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent
-            data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE) {
-            if (resultCode == MoveForResultActivity.RESULT_CODE) {
-                int selectedValue =
-                        data.getIntExtra(MoveForResultActivity.EXTRA_SELECTED_VALUE, 0);
-                tvResult.setText(String.format("Hasil : %s", selectedValue));
+    private void initComponent() {
+        btn1 = (ImageButton) findViewById(R.id.anime);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startIntent(R.drawable.test1,"anime");
             }
-        }
+        });
+
+        btn2 = (ImageButton) findViewById(R.id.manga);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startIntent(R.drawable.test2,"manga");
+            }
+        });
+
+        btn3 = (ImageButton)findViewById(R.id.music);
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startIntent(R.drawable.test3,"music");
+            }
+        });
+
+        btn4 = (Button)findViewById(R.id.other);
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startIntent(R.drawable.title,"other");
+            }
+        });
     }
+
+    private void startIntent(int image, String title) {
+        Intent intent = new Intent(this,input1.class);
+        intent.putExtra(input1.EXTRA_TITLE,title);
+        intent.putExtra(input1.EXTRA_IMAGE,image);
+        startActivity(intent);
+    }
+
+
 }
