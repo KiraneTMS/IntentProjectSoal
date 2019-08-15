@@ -46,18 +46,18 @@ public class MainActivity extends AppCompatActivity implements
 
             case R.id.btn_move_with_data_activity:
                 Intent moveWithDataIntent = new Intent(MainActivity.this, MoveWithDataActivity.class);
-                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "Rin Rin Nurmalasari");
-                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 24);
+                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "Arsya");
+                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 666);
                 startActivity(moveWithDataIntent);
 
                 break;
 
             case R.id.btn_move_activity_object:
                 Person mPerson = new Person();
-                mPerson.setName("Rin Rin Nurmalasari");
-                mPerson.setAge(24);
+                mPerson.setName("Arsya Alifian");
+                mPerson.setAge(666);
 
-                mPerson.setEmail("rinrinnm@student.itb.ac.id");
+                mPerson.setEmail("kirenaiasakura@gmail.com");
 
                 mPerson.setCity("Bandung");
                 Intent moveWithObjectIntent = new Intent(MainActivity.this,MoveWithObjectActivity.class);
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements
                 break;
 
             case R.id.btn_dial_number:
-                String phoneNumber = "089603796012";
+                String phoneNumber = "-";
                 Intent dialPhoneIntent = new Intent(Intent.ACTION_DIAL,
                         Uri.parse("tel:" + phoneNumber));
                 startActivity(dialPhoneIntent);
